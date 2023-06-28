@@ -8,4 +8,5 @@ public class Recipe
   public string img { get; set; }
   public string category { get; set; }
   public string creatorId { get; set; }
+  public Account creator { get; set; }
 }
