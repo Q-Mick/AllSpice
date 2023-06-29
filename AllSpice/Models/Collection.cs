@@ -1,10 +1,14 @@
-namespace AllSpice.Models
-{
+namespace AllSpice.Models;
+
   public class Collection
-    {
-        public string id { get; set; }
-        public string collectionName { get; set; }
-        public string accountId { get; set; }
-        public string recipeId { get; set; }
-    }
-}
+  {
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string AccountId { get; set; }
+    public int RecipeId { get; set; }
+    // public list followers { get; set; }
+  }
+
+
+ 
+

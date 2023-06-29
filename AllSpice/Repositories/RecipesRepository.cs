@@ -15,11 +15,11 @@ internal Recipe CreateRecipe(Recipe recipeData)
     INSERT INTO recipes
     (title, instructions, img, category, creatorId)
     VALUES
-    (@title, @instructions, @img, @category, @creatorId)
+    (@title, @instructions, @img, @category, @creatorId);
 
     SELECT
-    recipe.*,
-    creator.*
+        recipe.*,
+        creator.*
     FROM recipes recipe
     JOIN accounts creator ON recipe.creatorId = creator.id
     WHERE recipe.id = LAST_INSERT_ID()

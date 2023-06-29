@@ -2,7 +2,7 @@ namespace AllSpice.Models;
 
 public class Recipe
 {
-  public string Id { get; set; }
+  public int Id { get; set; }
   public string Title { get; set; }
   public string Instructions { get; set; }
   public string Img { get; set; }
@@ -10,3 +10,7 @@ public class Recipe
   public string CreatorId { get; set; }
   public Account Creator { get; set; }
 }
+ public class CollectionRecipe : Recipe // NOTE this is a view model
+  {
+    public int CollectionId { get; set; }
+  }
