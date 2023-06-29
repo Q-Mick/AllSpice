@@ -2,7 +2,7 @@ namespace AllSpice.Repositories;
 
 public class RecipesRepository
 {
-  private readonly IDbConnection _db; // NOTE this are the dependancies
+  private readonly IDbConnection _db; // NOTE these are the dependancies
 
 public RecipesRepository(IDbConnection db)
 {
@@ -15,18 +15,18 @@ internal Recipe CreateRecipe(Recipe recipeData)
     INSERT INTO recipes
     (title, instructions, img, category, creatorId)
     VALUES
-    (@title, @instruction, @img, @category, @creatorId)
+    (@title, @instructions, @img, @category, @creatorId)
 
     SELECT
     recipe.*,
     creator.*
     FROM recipes recipe
     JOIN accounts creator ON recipe.creatorId = creator.id
-    WHERE recipe.id = LAST_INSERT_ID();
-    ";
+    WHERE recipe.id = LAST_INSERT_ID()
+    ;";
     Recipe recipe = _db.Query<Recipe, Account, Recipe>(sql, (recipe, creator) =>
     {
-        recipe.creator = creator;
+        recipe.Creator = creator; // NOTE this is where your creator is populated with the account data
         return recipe;
     }, recipeData).FirstOrDefault();
     return recipe;

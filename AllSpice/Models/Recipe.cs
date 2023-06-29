@@ -2,11 +2,11 @@ namespace AllSpice.Models;
 
 public class Recipe
 {
-  public string id { get; set; }
-  public string title { get; set; }
-  public string instructions { get; set; }
-  public string img { get; set; }
-  public string category { get; set; }
-  public string creatorId { get; set; }
-  public Account creator { get; set; }
+  public string Id { get; set; }
+  public string Title { get; set; }
+  public string Instructions { get; set; }
+  public string Img { get; set; }
+  public string Category { get; set; }
+  public string CreatorId { get; set; }
+  public Account Creator { get; set; }
 }
