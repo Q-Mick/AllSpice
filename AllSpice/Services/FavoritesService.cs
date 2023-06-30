@@ -22,7 +22,7 @@ public class FavoritesService
         internal void DeleteFavorite(int favoriteId, string userId)
     {
         Favorite favorite = GetById(favoriteId);
-        if (favorite.AccountId != userId) new Exception("Unauthorized to remove this collaborator!");
+        if (favorite.AccountId != userId) new Exception("Unauthorized to remove this favorite!");
         int rows = _repo.DeleteFavorite(favoriteId);
         if (rows > 1) new Exception("Something went wrong");
     }
