@@ -13,13 +13,14 @@ public class IngredientsRepository
             INSERT INTO ingredients
             (name, quantity, recipeId)
             VALUES
-            (@Name, @Quantity, @RecipeId);
+            (@name, @quantity, @recipeId);
 
             SELECT
             ing.*,
             rec.*
             FROM ingredients ing
             JOIN recipes rec ON ing.recipeId = rec.Id
+            WHERE ing.id = LAST_INSERT_ID();
             ";
     Ingredient newIngredient = _db.Query<Ingredient, Recipe, Ingredient>(sql, (ingredient, recipe) =>
     {
@@ -30,15 +31,29 @@ public class IngredientsRepository
     return newIngredient;
   }
 
-  internal Ingredient GetById(int ingredientId)
-  {
-    throw new NotImplementedException();
-  }
-
   internal List<Ingredient> GetIngredientsByRecipeId(int recipeId)
   {
-    throw new NotImplementedException();
+    string sql = @"
+  SELECT
+  * 
+  FROM ingredients
+  WHERE recipeId = @recipeId
+  ;";
+    List<Ingredient> recipeIngredients = _db.Query<Ingredient>(sql, new {recipeId}).ToList();
+    // let ingredients = await dbContext.Ingredients.find({recipeId})
+    return new List<Ingredient>(recipeIngredients);
   }
+      internal int DeleteIngredient(int ingredientId)
+    {
+
+        string sql = @"
+        DELETE FROM ingredients 
+        WHERE id = @ingredientId
+        LIMIT 1
+        ;";
+        int rows = _db.Execute(sql, new { ingredientId });
+        return rows;
+    }
 }
 
 

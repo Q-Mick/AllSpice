@@ -20,11 +20,12 @@ public class IngredientsService
         List<Ingredient> ingredients = _repo.GetIngredientsByRecipeId(recipeId);
         return ingredients;
     }
-    // internal void DeleteIngredient(int recipeId, int ingredientId)
-    // {
-    //     Ingredient ingredient = RecipesService.GetById(ingredientId);
-    //     if (picture.CreatorId != userId) new Exception("Nacho picture");
-    // }
+    // TODO add delete this method
+        internal void DeleteIngredient(int ingredientId)
+    {        
+        int rows = _repo.DeleteIngredient(ingredientId);
+        if (rows > 1) new Exception("Deleted more than 1 row, something is wrong.");
+    }
 }
 
 

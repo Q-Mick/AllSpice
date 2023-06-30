@@ -10,6 +10,10 @@ public class Recipe
   public string CreatorId { get; set; }
   public Account Creator { get; set; }
 }
+public class FavoriteRecipe : Recipe
+{
+    public int FavoriteId { get; set; }
+}
  public class CollectionRecipe : Recipe // NOTE this is a view model
   {
     public int CollectionId { get; set; }
