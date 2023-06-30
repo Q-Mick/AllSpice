@@ -7,8 +7,5 @@ namespace AllSpice.Models
         public int RecipeId { get; set; }
     }
 
-    public class FavoriteAccount : Account
-{
-    public int FavoriteId { get; set; }
-}
+
 }
