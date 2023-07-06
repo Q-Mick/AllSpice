@@ -69,9 +69,6 @@
     </div>
   </section>
 
-  <button class="px-20" @click="closeSlide">test</button>
-  
-
 
   <section id="Recipes">
 <!-- SECTION Recipe Card Template -->
