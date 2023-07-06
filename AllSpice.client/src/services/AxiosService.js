@@ -6,6 +6,7 @@ export const api = Axios.create({
   timeout: 8000
 })
 
+
 api.interceptors.request.use(config => config, handleAxiosError)
 api.interceptors.response.use(response => response, handleAxiosError)
 

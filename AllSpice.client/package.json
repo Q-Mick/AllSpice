@@ -9,9 +9,12 @@
   },
   "dependencies": {
     "@bcwdev/auth0provider-client": "0.0.13",
+    "@headlessui/vue": "^1.7.14",
+    "@heroicons/vue": "^2.0.18",
     "@mdi/font": "7.2.96",
     "@popperjs/core": "2.11.8",
     "@vitejs/plugin-vue": "^4.2.3",
+    "alpinejs": "^3.12.3",
     "axios": "1.4.0",
     "socket.io-client": "4.6.2",
     "sweetalert2": "11.7.10",
