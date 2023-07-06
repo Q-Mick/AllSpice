@@ -1,6 +1,6 @@
 <template>
   <TransitionRoot as="template" :show="open">
-    <Dialog as="div" class="relative z-10" @close="open = false">
+    <Dialog as="div" class="relative z-10" @close="closeSlide">
       <div class="fixed inset-0" />
 
       <div class="fixed inset-0 overflow-hidden">
@@ -13,7 +13,7 @@
                     <div class="flex items-start justify-between">
                       <h2 id="slide-over-heading" class="text-base font-semibold leading-6 text-gray-900">Profile</h2>
                       <div class="ml-3 flex h-7 items-center">
-                        <button type="button" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500" @click="open = false">
+                        <button type="button" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500" @click="closeSlide">
                           <span class="sr-only">Close panel</span>
                           <XMarkIcon class="h-6 w-6" aria-hidden="true" />
                         </button>
@@ -123,6 +123,11 @@ const props = defineProps({
   open: Boolean,
   account: Account,
 })
+const emit = defineEmits(['close-slide']);
+
+const closeSlide = () => {
+  emit('close-slide');
+};
 console.log(props.open)
 
  

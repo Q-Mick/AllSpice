@@ -69,6 +69,7 @@
     </div>
   </section>
 
+  <button class="px-20" @click="closeSlide">test</button>
   
 
 
@@ -96,7 +97,7 @@
 
 </div>
 <!-- !SECTION -->
-<AccountSlide :open="open" v-bind:account="account" />
+<AccountSlide v-model:open="open" v-bind:account="account" @close-slide="closeSlide" />
 </template>
 
 <script>
@@ -111,15 +112,14 @@ export default {
     AccountSlide,
   },
   setup() {
-    
+    const openAcct = ref(false)
     const filterBy = ref('')
-    // const open = ref(false);
     const openSlide = () => {
-      AppState.open = true; // Open
+      openAcct.value = true; // Open the slide
     };
 
     const closeSlide = () => {
-      AppState.open = false; // Close the slide
+      openAcct.value = !openAcct.value; // Close the slide
     };
     onMounted(() => getRecipes())
     async function getRecipes() {
@@ -132,10 +132,11 @@ export default {
 
     }
     return {
+      openAcct,
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
       recipes: computed (() => AppState.recipes),
-      open: computed (() => AppState.open),
+      open: computed(() => openAcct.value),
       openSlide,
       closeSlide,
       async login() {
