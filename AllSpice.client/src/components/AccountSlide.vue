@@ -63,7 +63,7 @@
                             <div class="relative mb-3">
                               <label for="name"
                                 class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">Name</label>
-                              <input v-model="editable.name" type="text" name="name" id="name"
+                              <input v-model="editable.name" type="text" name="name" id="name" maxlength="50"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 placeholder="Jane Smith" />
                             </div>
@@ -74,9 +74,9 @@
             </div> -->
 
                             <div class="relative">
-                              <label for="name"
+                              <label for="picture"
                                 class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">Picture</label>
-                              <input v-model="editable.picture" type="text" name="name" id="name"
+                              <input v-model="editable.picture" type="text" maxlength="125" name="name" id="name"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 placeholder="Jane Smith" />
                             </div>

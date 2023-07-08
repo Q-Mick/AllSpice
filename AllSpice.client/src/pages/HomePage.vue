@@ -103,6 +103,7 @@ import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
 import { logger } from "../utils/Logger.js";
 import { recipeService } from '../services/RecipeService.js'
+import { accountService } from "../services/AccountService.js";
 import AccountSlide from '../components/AccountSlide.vue';
 import Pop from "../utils/Pop.js";
 export default {
@@ -120,9 +121,16 @@ export default {
       console.log('event closeSlide')
       openAcct.value = !openAcct.value; // Close the slide
     };
-    const handleSubmit = (data) => {
+    async function handleSubmit(data){
       // Handle the submitted account data from the child component
       console.log('Submitted account:', data);
+      // const { id, email, ...accountData } = data;
+      try {
+          Pop.toast('updating account')
+          await accountService.editAccount(data)
+        } catch (error) {
+          Pop.error(error, '[Editing Account]')
+        }
     };
 // !SECTION end component event handlers
 
