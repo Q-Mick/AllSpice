@@ -85,7 +85,7 @@
     </div>
   </div>
   </section>
-  <div class="fixed bottom-4 right-4 z-50">
+  <div class="fixed bottom-4 right-4 z-9">
     <button type="button" class="rounded-full bg-indigo-600 p-2 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
   <svg class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
     <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
@@ -94,7 +94,7 @@
 
 </div>
 <!-- !SECTION -->
-<AccountSlide v-model:open="open" v-bind:account="account" @close-slide="closeSlide" />
+<AccountSlide v-model:open="open" v-bind:account="account" @close-slide="closeSlide" @submit-account="handleSubmit" />
 </template>
 
 <script>
@@ -104,6 +104,7 @@ import { AuthService } from '../services/AuthService'
 import { logger } from "../utils/Logger.js";
 import { recipeService } from '../services/RecipeService.js'
 import AccountSlide from '../components/AccountSlide.vue';
+import Pop from "../utils/Pop.js";
 export default {
   components:{
     AccountSlide,
@@ -114,10 +115,18 @@ export default {
     const openSlide = () => {
       openAcct.value = true; // Open the slide
     };
-
+    // SECTION event handling for the accountslide component
     const closeSlide = () => {
+      console.log('event closeSlide')
       openAcct.value = !openAcct.value; // Close the slide
     };
+    const handleSubmit = (data) => {
+      // Handle the submitted account data from the child component
+      console.log('Submitted account:', data);
+    };
+// !SECTION end component event handlers
+
+
     onMounted(() => getRecipes())
     async function getRecipes() {
       try {
@@ -136,6 +145,7 @@ export default {
       open: computed(() => openAcct.value),
       openSlide,
       closeSlide,
+      handleSubmit,
       async login() {
         AuthService.loginWithPopup()
       },
