@@ -25,7 +25,7 @@
                 <div class="px-2 w-1/2">
                   <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
                   <div class="mt-2">
-                    <input type="title" name="title" id="title"
+                    <input v-model="recipeData.title" required maxlength="25" minlength="3" type="title" name="titl e" id="title"
                       class="block w-full rounded-md border-0 px-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       placeholder="Title..." />
                   </div>
@@ -35,7 +35,7 @@
                 <div class="px-2 w-1/2">
                   <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Category</label>
                   <div class="mt-2">
-                    <input type="category" name="category" id="category"
+                    <input v-model="recipeData.category" required maxlength="25" minlength="3" type="category" name="category" id="category"
                       class="block w-full rounded-md border-0 px-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       placeholder="Category" />
                   </div>
@@ -45,16 +45,16 @@
               <div class="px-2">
                 <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Picture</label>
                 <div class="mt-2">
-                  <input type="description" name="description" id="description"
+                  <input v-model="recipeData.picture" required maxlength="300" minlength="10" type="picture" name="picture" id="picture"
                     class="px-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    placeholder="It tastes so good..." aria-describedby="email-description" />
+                    placeholder="Picture URL" aria-describedby="email-description" />
                 </div>
 
               </div>
               <div class="px-2 mt-2">
                 <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
                 <div class="mt-2">
-                  <input type="description" name="description" id="description"
+                  <input v-model="recipeData.description" required maxlength="124" minlength="3" type="description" name="description" id="description"
                     class="px-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     placeholder="It tastes so good..." aria-describedby="email-description" />
                 </div>
@@ -64,7 +64,7 @@
               <div class="mt-5 p-2 flex justify-end items-end space-x-1">
                 <button @click="toggleModal" type="button"
                   class="rounded bg-white px-2.5 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Cancel</button>
-                <button type="button"
+                <button @click="createRecipe" type="button"
                   class="rounded bg-indigo-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create
                   Recipe</button>
               </div>
@@ -81,12 +81,20 @@
 import { ref } from 'vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { CheckIcon } from '@heroicons/vue/24/outline'
+import Pop from "../utils/Pop.js";
 
 // const open = ref(true)
 const props = defineProps({
   open: Boolean,
 })
-const emit = defineEmits(['toggle-create-recipe']);
+const emit = defineEmits(['toggle-create-recipe', 'create-recipe']);
+const recipeData = ref({});
+const createRecipe = () => {
+
+  Pop.toast('Creating Recipe');
+  emit('create-recipe', recipeData.value);
+
+};
 const toggleModal = () => {
   emit('toggle-create-recipe');
 }

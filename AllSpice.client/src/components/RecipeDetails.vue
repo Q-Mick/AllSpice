@@ -53,7 +53,7 @@
                         </div>
                         <div class="overflow-auto">
                           <p v-for="(step, index) in recipe.steps" :key="index" class="text-[16px] mx-2">
-                            {{ index + 1 }}. {{ recipe?.steps[index] }}
+                            {{ index + 1 }}. {{ step }}
                           </p>
                         </div>
                         <!-- <div class="flex-grow"></div> -->

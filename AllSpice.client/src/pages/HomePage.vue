@@ -103,7 +103,7 @@
   </div>
   <AccountSlide v-model:open="open" v-bind:account="account" @close-slide="closeSlide" @submit-account="handleSubmit" />
   <RecipeDetails v-model:open="openDetails" @toggle-details="toggleDetailsModal" :recipe="activeRecipe"/>
-  <NewRecipeModal v-model:open="openNewRecipe" @toggle-create-recipe="toggleCreateModal" />
+  <NewRecipeModal v-model:open="openNewRecipe" @toggle-create-recipe="toggleCreateModal" @create-recipe="createRecipe" />
 </template>
 
 <script>
@@ -126,10 +126,6 @@ export default {
     const openDetails = ref(false)
     const openNewRecipe = ref(false)
     const filterBy = ref('')
-    const toggleNewRecipeModal = () => {
-      console.log('[COMPONENT EVENT - NEW RECIPE] - toggle-modal')
-      openNewRecipe.value = !openNewRecipe.value; // toggle the modal
-    };
     const toggleDetailsModal = async (recipeId) => {
       if (openDetails.value == false) {
          console.log('[COMPONENT EVENT - RECIPE DETAILS] - toggle details');
@@ -159,7 +155,6 @@ export default {
     async function handleSubmit(data) {
       // Handle the submitted account data from the child component
       console.log('Submitted account:', data);
-      // const { id, email, ...accountData } = data;
       try {
         Pop.toast('updating account')
         await accountService.editAccount(data)
@@ -167,6 +162,14 @@ export default {
         Pop.error(error, '[Editing Account]')
       }
     };
+    async function createRecipe(recipeData){
+      try {
+        logger.log(recipeData)
+        // await recipeService.createRecipe(recipeData)
+      } catch (error) {
+        Pop.log(error);
+      }
+    }
     // !SECTION end component event handlers
 
 
@@ -191,6 +194,7 @@ export default {
       openSlide,
       closeSlide,
       handleSubmit,
+      createRecipe,
       toggleDetailsModal,
       activeRecipe: computed(() => AppState.activeRecipe),
       toggleCreateModal,
