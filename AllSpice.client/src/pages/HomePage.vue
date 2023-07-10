@@ -32,15 +32,15 @@
             <div class="py-1" role="none">
               <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
               <p @click="openSlide" x-on:click="openMenu = false"
-                class="text-gray-700 block px-4 py-2 text-sm hover:bg-indigo-500 hover:text-white" role="menuitem"
+                class="cursor-pointer text-gray-700 block px-4 py-2 text-sm hover:bg-indigo-500 hover:text-white" role="menuitem"
                 tabindex="-1" id="menu-item-0">Account Settings</p>
               <p x-on:click="openMenu = false"
-                class="text-gray-700 block px-4 py-2 text-sm hover:bg-indigo-500 hover:text-white" role="menuitem"
+                class="cursor-pointer text-gray-700 block px-4 py-2 text-sm hover:bg-indigo-500 hover:text-white" role="menuitem"
                 tabindex="-1" id="menu-item-1">Favorites</p>
             </div>
             <div class="py-1" role="none">
               <p @click="logout" x-on:click="openMenu = false"
-                class="text-gray-700 block px-4 py-2 text-sm hover:bg-indigo-500 hover:text-white" role="menuitem"
+                class="cursor-pointer text-gray-700 block px-4 py-2 text-sm hover:bg-indigo-500 hover:text-white" role="menuitem"
                 tabindex="-1" id="menu-item-2">Sign Out</p>
 
             </div>
@@ -92,7 +92,7 @@
 
 
   <div class="fixed bottom-4 right-4 z-9">
-    <button type="button"
+    <button type="button" @click="toggleCreateModal()"
       class="rounded-full bg-indigo-600 p-2 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
       <svg class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <path
@@ -103,6 +103,7 @@
   </div>
   <AccountSlide v-model:open="open" v-bind:account="account" @close-slide="closeSlide" @submit-account="handleSubmit" />
   <RecipeDetails v-model:open="openDetails" @toggle-details="toggleDetailsModal" :recipe="activeRecipe"/>
+  <NewRecipeModal v-model:open="openNewRecipe" @toggle-create-recipe="toggleCreateModal" />
 </template>
 
 <script>
@@ -114,6 +115,7 @@ import { recipeService } from '../services/RecipeService.js'
 import { accountService } from "../services/AccountService.js";
 import AccountSlide from '../components/AccountSlide.vue';
 import RecipeDetails from "../components/RecipeDetails.vue";
+import NewRecipeModal from "../components/NewRecipeModal.vue";
 import Pop from "../utils/Pop.js";
 export default {
   components: {
@@ -136,6 +138,14 @@ export default {
         
       }
       openDetails.value = !openDetails.value; // toggle the modal
+
+    };
+    const toggleCreateModal = async () => {
+      if (openNewRecipe.value == false) {
+         console.log('[COMPONENT EVENT - CREATE MODAL] - toggle create');
+        
+      }
+      openNewRecipe.value = !openNewRecipe.value; // toggle the modal
 
     };
     const openSlide = () => {
@@ -183,7 +193,7 @@ export default {
       handleSubmit,
       toggleDetailsModal,
       activeRecipe: computed(() => AppState.activeRecipe),
-      toggleNewRecipeModal,
+      toggleCreateModal,
       recipes: computed(() => {
         if (filterBy.value == "") {
           return AppState.recipes

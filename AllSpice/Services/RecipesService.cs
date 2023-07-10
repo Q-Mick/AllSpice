@@ -35,6 +35,7 @@ public class RecipesService
     oldRecipe.Category = recipeData.Category != null ? recipeData.Category : oldRecipe.Category;
     oldRecipe.Img = recipeData.Img != null ? recipeData.Img : oldRecipe.Img;
     oldRecipe.Instructions = recipeData.Instructions != null ? recipeData.Instructions : oldRecipe.Instructions;
+    oldRecipe.Description = recipeData.Description != null ? recipeData.Description : oldRecipe.Description;
   
     _repo.UpdateRecipe(oldRecipe);
     return oldRecipe;
