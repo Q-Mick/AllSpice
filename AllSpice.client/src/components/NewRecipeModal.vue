@@ -43,16 +43,30 @@
               </div>
               <!-- description -->
               <div class="px-2">
-    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
-    <div class="mt-2">
-      <input type="description" name="description" id="description" class="px-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="It tastes so good..." aria-describedby="email-description" />
-    </div>
-    <p class="mt-2 text-sm text-gray-500" id="email-description">Brief description of the recipe.</p>
-  </div>
+                <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Picture</label>
+                <div class="mt-2">
+                  <input type="description" name="description" id="description"
+                    class="px-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    placeholder="It tastes so good..." aria-describedby="email-description" />
+                </div>
+
+              </div>
+              <div class="px-2 mt-2">
+                <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
+                <div class="mt-2">
+                  <input type="description" name="description" id="description"
+                    class="px-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    placeholder="It tastes so good..." aria-describedby="email-description" />
+                </div>
+                <p class="mt-2 text-sm text-gray-500" id="email-description">Brief description of the recipe.</p>
+              </div>
               <!-- buttons here -->
-              <div class="mt-5 sm:mt-6 p-2 flex justify-end mt-5 sm:mt-6 items-end space-x-1">
-                <button type="button" class="rounded bg-white px-2.5 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Cancel</button>
-                <button type="button" class="rounded bg-indigo-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create Recipe</button>
+              <div class="mt-5 p-2 flex justify-end items-end space-x-1">
+                <button @click="toggleModal" type="button"
+                  class="rounded bg-white px-2.5 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Cancel</button>
+                <button type="button"
+                  class="rounded bg-indigo-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create
+                  Recipe</button>
               </div>
             </DialogPanel>
           </TransitionChild>
