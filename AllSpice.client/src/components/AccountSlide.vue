@@ -138,7 +138,7 @@ import { EllipsisVerticalIcon } from '@heroicons/vue/20/solid'
 
 const props = defineProps({
   open: Boolean,
-  account: Account,
+  account: Object,
 })
 const emit = defineEmits(['close-slide', 'submit-account']);
 const closeSlide = () => {

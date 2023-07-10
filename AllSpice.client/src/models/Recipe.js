@@ -1,3 +1,8 @@
+function convertInstructionsToSteps(instructions) {
+  const steps = instructions.split(" + ");
+  return steps;
+}
+
 export class Recipe {
   constructor(data) {
     this.id = data.id
@@ -7,6 +12,7 @@ export class Recipe {
     this.category = data.category
     this.creatorId = data.creatorId
     this.creator = data.creator
+    this.steps = convertInstructionsToSteps(data.instructions)
 
   }
 }
