@@ -28,6 +28,11 @@ class RecipeService {
     Pop.success(`Recipe created!`)
     return newRecipe
   }
+
+  async editRecipe(recipeId, recipeData){
+    const res = await api.put(`api/recipes/${recipeId}`, recipeData)
+    return res.data
+  }
 }
 
 export const recipeService = new RecipeService();

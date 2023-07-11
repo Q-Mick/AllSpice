@@ -102,7 +102,7 @@
 
   </div>
   <AccountSlide v-model:open="open" v-bind:account="account" @close-slide="closeSlide" @submit-account="handleSubmit" />
-  <RecipeDetails v-model:open="openDetails" v-bind:account="account" @toggle-details="toggleDetailsModal" :recipe="activeRecipe"/>
+  <RecipeDetails v-model:open="openDetails" v-bind:account="account" @toggle-details="toggleDetailsModal" :recipe="activeRecipe" @update-recipe="saveRecipe" />
   <NewRecipeModal v-model:open="openNewRecipe" @toggle-create-recipe="toggleCreateModal" @create-recipe="createRecipe" />
 </template>
 
@@ -178,6 +178,15 @@ export default {
         logger.log(error);
       }
     }
+    async function saveRecipe(recipeData){
+      try {
+      //  const updatedRecipe = await recipeService.editRecipe(AppState.activeRecipe.id, recipeData)
+        logger.log(AppState.activeRecipe)
+      } catch (error) {
+        logger.log(error);
+      }
+    }
+
     // !SECTION end component event handlers
 
 
@@ -203,6 +212,7 @@ export default {
       closeSlide,
       handleSubmit,
       createRecipe,
+      saveRecipe,
       toggleDetailsModal,
       activeRecipe: computed(() => AppState.activeRecipe),
       toggleCreateModal,
