@@ -36,7 +36,7 @@
                           </p>
                         </div>
              
-                        <div class="mt-auto relative flex items-center m-1">
+                        <div v-if="account?.id == recipe?.creatorId" class="mt-auto relative flex items-center m-1">
                           <input type="text" name="step" id="step"
                             class="block w-full rounded-md border-0 py-1.5 h-9 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                           <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
@@ -52,12 +52,12 @@
                           Recipe Ingredients
                         </div>
                         <div class="overflow-auto">
-                          <p v-for="(step, index) in recipe.steps" :key="index" class="text-[16px] mx-2">
+                          <!-- <p v-for="(step, index) in recipe.steps" :key="index" class="text-[16px] mx-2">
                             {{ index + 1 }}. {{ step }}
-                          </p>
+                          </p> -->
                         </div>
                         <!-- <div class="flex-grow"></div> -->
-                        <div class="mt-auto relative flex items-center m-1">
+                        <div v-if="account?.id == recipe?.creatorId" class="mt-auto relative flex items-center m-1">
                           <input type="text" name="step" id="step"
                             class="block w-full rounded-md border-0 py-1.5 h-9 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                           <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5 cursor-pointer">
@@ -98,6 +98,7 @@ import { Recipe } from "../models/Recipe.js";
 const props = defineProps({
   open: Boolean,
   recipe: Object,
+  account: Object,
 })
 const emit = defineEmits(['toggle-details']);
 const toggleModal = () => {

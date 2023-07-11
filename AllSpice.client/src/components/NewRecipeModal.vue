@@ -25,7 +25,8 @@
                 <div class="px-2 w-1/2">
                   <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
                   <div class="mt-2">
-                    <input v-model="recipeData.title" required maxlength="25" minlength="3" type="title" name="titl e" id="title"
+                    <input v-model="recipeData.title" required maxlength="25" minlength="3" type="title" name="titl e"
+                      id="title"
                       class="block w-full rounded-md border-0 px-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       placeholder="Title..." />
                   </div>
@@ -35,7 +36,8 @@
                 <div class="px-2 w-1/2">
                   <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Category</label>
                   <div class="mt-2">
-                    <input v-model="recipeData.category" required maxlength="25" minlength="3" type="category" name="category" id="category"
+                    <input v-model="recipeData.category" required maxlength="25" minlength="3" type="category"
+                      name="category" id="category"
                       class="block w-full rounded-md border-0 px-1 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       placeholder="Category" />
                   </div>
@@ -45,7 +47,8 @@
               <div class="px-2">
                 <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Picture</label>
                 <div class="mt-2">
-                  <input v-model="recipeData.picture" required maxlength="300" minlength="10" type="picture" name="picture" id="picture"
+                  <input v-model="recipeData.img" required maxlength="300" minlength="10" type="picture"
+                    name="picture" id="picture"
                     class="px-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     placeholder="Picture URL" aria-describedby="email-description" />
                 </div>
@@ -54,12 +57,21 @@
               <div class="px-2 mt-2">
                 <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
                 <div class="mt-2">
-                  <input v-model="recipeData.description" required maxlength="124" minlength="3" type="description" name="description" id="description"
+                  <input v-model="recipeData.description" required maxlength="124" minlength="3" type="description"
+                    name="description" id="description"
                     class="px-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     placeholder="It tastes so good..." aria-describedby="email-description" />
                 </div>
                 <p class="mt-2 text-sm text-gray-500" id="email-description">Brief description of the recipe.</p>
               </div>
+              <!-- NOTE INSTRUCTIONS  -->
+              <div class="mx-2 mt-2">
+    <label for="comment" class="block text-sm font-medium leading-6 text-gray-900">Instructions</label>
+    <div class="mt-2">
+      <textarea required minlength="5" maxlength="1000" v-model="recipeData.instructions" rows="4" name="comment" id="comment" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+    </div>
+    <p class="mt-2 text-sm text-gray-500" id="email-description">Separate each step with a + sign.</p>
+  </div>
               <!-- buttons here -->
               <div class="mt-5 p-2 flex justify-end items-end space-x-1">
                 <button @click="toggleModal" type="button"
@@ -91,8 +103,9 @@ const emit = defineEmits(['toggle-create-recipe', 'create-recipe']);
 const recipeData = ref({});
 const createRecipe = () => {
 
-  Pop.toast('Creating Recipe');
+  // Pop.toast('Creating Recipe');
   emit('create-recipe', recipeData.value);
+  emit('toggle-create-recipe');
 
 };
 const toggleModal = () => {

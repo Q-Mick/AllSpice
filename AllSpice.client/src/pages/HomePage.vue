@@ -102,7 +102,7 @@
 
   </div>
   <AccountSlide v-model:open="open" v-bind:account="account" @close-slide="closeSlide" @submit-account="handleSubmit" />
-  <RecipeDetails v-model:open="openDetails" @toggle-details="toggleDetailsModal" :recipe="activeRecipe"/>
+  <RecipeDetails v-model:open="openDetails" v-bind:account="account" @toggle-details="toggleDetailsModal" :recipe="activeRecipe"/>
   <NewRecipeModal v-model:open="openNewRecipe" @toggle-create-recipe="toggleCreateModal" @create-recipe="createRecipe" />
 </template>
 
@@ -120,6 +120,8 @@ import Pop from "../utils/Pop.js";
 export default {
   components: {
     AccountSlide,
+    RecipeDetails,
+    NewRecipeModal,
   },
   setup() {
     const openAcct = ref(false)
@@ -130,7 +132,7 @@ export default {
       if (openDetails.value == false) {
          console.log('[COMPONENT EVENT - RECIPE DETAILS] - toggle details');
         await recipeService.setActiveRecipe(recipeId)
-        console.log('Recipe ID:', recipeId);
+        logger.log('Recipe ID:', recipeId);
         
       }
       openDetails.value = !openDetails.value; // toggle the modal
@@ -164,11 +166,13 @@ export default {
     };
     async function createRecipe(recipeData){
       try {
-        logger.log(recipeData)
+        // logger.log(recipeData)
        
-        newRecipe = await recipeService.createRecipe(recipeData)
-        toggleCreateModal()
-        toggleDetailsModal(newRecipe.id)
+        const newRecipe = await recipeService.createRecipe(recipeData)
+        
+        //  toggleCreateModal()
+         toggleDetailsModal(newRecipe.id)
+      
         logger.log(`set new recipe as active ${newRecipe.id}`)
       } catch (error) {
         logger.log(error);
