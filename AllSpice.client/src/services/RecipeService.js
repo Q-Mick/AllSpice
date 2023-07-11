@@ -20,9 +20,12 @@ class RecipeService {
   }
   async createRecipe(recipeData) {
     const res = await api.post('api/recipes', recipeData)
-    logger.log(res.data, `${recipeData}`)
+    const newRecipe = new Recipe(res.data)
+    logger.log(newRecipe)
+    AppState.recipes.unshift(newRecipe)
+    // this.getRecipes()
     Pop.success(`Recipe created!`)
-    return res.data
+    return newRecipe
   }
 }
 

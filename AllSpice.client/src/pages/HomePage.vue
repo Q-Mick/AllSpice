@@ -165,9 +165,13 @@ export default {
     async function createRecipe(recipeData){
       try {
         logger.log(recipeData)
-        // await recipeService.createRecipe(recipeData)
+       
+        newRecipe = await recipeService.createRecipe(recipeData)
+        toggleCreateModal()
+        toggleDetailsModal(newRecipe.id)
+        logger.log(`set new recipe as active ${newRecipe.id}`)
       } catch (error) {
-        Pop.log(error);
+        logger.log(error);
       }
     }
     // !SECTION end component event handlers
