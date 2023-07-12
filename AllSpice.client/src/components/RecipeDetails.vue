@@ -157,9 +157,9 @@ function removeStep(index) {
 }
 function saveRecipe() {
   const newInstructions = AppState.activeRecipe.steps.join(" + ")
-  AppState.activeRecipe.instructions = newInstructions
-  emit('update-recipe')
-  logger.log(newInstructions)
+
+  emit('update-recipe', newInstructions)
+  // logger.log(newInstructions)
 
 }
 </script>

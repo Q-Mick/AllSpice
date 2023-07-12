@@ -180,8 +180,12 @@ export default {
     }
     async function saveRecipe(recipeData){
       try {
-      //  const updatedRecipe = await recipeService.editRecipe(AppState.activeRecipe.id, recipeData)
-        logger.log(AppState.activeRecipe)
+        const targetRecipe = AppState.activeRecipe
+        targetRecipe.instructions = recipeData
+       const updatedRecipe = await recipeService.editRecipe(targetRecipe.id, targetRecipe)
+
+      logger.log(updatedRecipe)
+        // logger.log(AppState.activeRecipe)
       } catch (error) {
         logger.log(error);
       }
