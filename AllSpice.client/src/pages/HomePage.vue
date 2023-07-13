@@ -70,7 +70,6 @@
     </div>
   </section>
 
-
   <section id="Recipes">
     <!-- SECTION Recipe Card Template -->
     <div class="grid-container px-4 pt-10 pb-5">
